@@ -10,7 +10,7 @@ from typing import Optional, List, Dict, Any
 # ═══════════════════════════════════════════════════════════════
 #  CONFIG
 # ═══════════════════════════════════════════════════════════════
-API_BASE = "http://127.0.0.1:8000"
+API_BASE = "https://movies-recommender-fastapi-full-stack.onrender.com"
 TMDB_IMG = "https://image.tmdb.org/t/p/w500"
 PLACEHOLDER_POSTER = "https://via.placeholder.com/500x750?text=No+Poster"
 CATEGORIES = {

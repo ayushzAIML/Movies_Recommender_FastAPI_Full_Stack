@@ -19,9 +19,6 @@ api = os.getenv("TMDB_API_KEY")
 TMDB_BASE = "https://api.themoviedb.org/3"
 TMDB_IMG_500 = "https://image.tmdb.org/t/p/w500"
 
-if not api:
-    raise ValueError("TMDB_API_KEY not found in environment variables")
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -113,7 +110,13 @@ async def tmdb_get(path: str, params: Optional[Dict[str, Any]] = None) -> Dict[s
     tmdb apu error -> 502 with details
     """
 
-    q = dict(params)
+    if not api:
+        raise HTTPException(
+            status_code=503,
+            detail="TMDB_API_KEY is not configured on the server"
+        )
+
+    q = dict(params or {})
     q["api_key"] = api
 
     try:
